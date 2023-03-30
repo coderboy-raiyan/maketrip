@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --btn-bg-color: linear-gradient(90deg, #124d5f 0%, #3ca897 100%);
+    --main-bg-color: linear-gradient(180deg, #a7d1df 0%, #ddf2f9 100%);
+    --gray: #656b82;
+    --black: #111528;
+    --orange: #e97017;
+    --navy-blue: #1e2647;
+}
