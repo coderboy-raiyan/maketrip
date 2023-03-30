@@ -1,0 +1,11 @@
+{
+  "name": "maketrip",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.37.0",
+    "husky": "^8.0.3",
+    "prettier": "^2.8.7"
+  }
+}
