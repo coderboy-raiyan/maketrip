@@ -1,7 +1,9 @@
-import { Form, Formik } from "formik";
+import Image from "next/image";
 import { useState } from "react";
 import * as Yup from "yup";
-import FormInput from "../../components/Inputs/FormInput";
+
+import images from "../../assets/images";
+import CompanyInfo from "./CompanyInfo";
 
 const companyInputFields = {
     companyName: "",
@@ -38,7 +40,7 @@ function Register() {
     const [companyFields, setCompanyFields] = useState(companyInputFields);
     const [contactFields, setContactFields] = useState(contactInputFields);
     const [loginFields, setLoginFields] = useState(loginInputFields);
-    const { companyName, email, phone, country, city, zip, address } = companyInputFields;
+    const { companyName, email, phone, country, city, zip, address } = companyFields;
 
     const [page, setPage] = useState(1);
     const formTitles = ["company", "contact", "login"];
@@ -54,75 +56,35 @@ function Register() {
     console.log(companyFields);
 
     return (
-        <section>
-            <div className="flex justify-center">
-                <Formik
-                    initialValues={{
-                        companyName,
-                        email,
-                        phone,
-                        country,
-                        city,
-                        zip,
-                        address,
-                    }}
-                    validationSchema={companyFiledSchema}
-                    enableReinitialize
-                    onSubmit={(values) => {
-                        console.log(values);
-                    }}
-                >
-                    {() => (
-                        <Form className="grid w-[600px] grid-cols-2">
-                            <FormInput
-                                onChange={handelChange}
-                                type="text"
-                                placeholder="company Name"
-                                name="companyName"
-                            />
-                            <FormInput
-                                onChange={handelChange}
-                                type="text"
-                                placeholder="Email"
-                                name="email"
-                            />
-                            <FormInput
-                                onChange={handelChange}
-                                type="text"
-                                placeholder="Phone"
-                                name="phone"
-                            />
-                            <FormInput
-                                onChange={handelChange}
-                                type="text"
-                                placeholder="Country"
-                                name="country"
-                            />
-                            <FormInput
-                                onChange={handelChange}
-                                type="text"
-                                placeholder="City"
-                                name="city"
-                            />
-                            <FormInput
-                                onChange={handelChange}
-                                type="text"
-                                placeholder="Zip/Postal Code"
-                                name="zip"
-                            />
-                            <textarea
-                                onChange={handelChange}
-                                className="col-span-2"
-                                type="text"
-                                placeholder="Address"
-                                name="address"
-                            />
-                            <button className="col-span-2" type="submit">
-                                Submit
-                            </button>
-                        </Form>
-                    )}
-                </Formik>
+        <section
+            style={{ background: "linear-gradient(180deg, #A7D1DF 0%, #DDF2F9 100%" }}
+            className="py-20"
+        >
+            <div className="display-size grid grid-cols-2">
+                <div className="">
+                    <Image className="mr-auto block w-[500px] rounded-lg" src={images.authBg1} />
+                </div>
+                {/* Form */}
+                <div className="rounded-lg bg-white p-10 shadow-lg">
+                    <h3 className="mb-2 text-center text-2xl font-semibold text-[var(--black)]">
+                        Signup & get started!
+                    </h3>
+                    <p className="mb-4 text-center text-sm text-[var(--gray)]">
+                        Start your my Partner journey in just 3 simple steps.
+                    </p>
+
+                    <CompanyInfo
+                        companyName={companyName}
+                        email={email}
+                        phone={phone}
+                        country={country}
+                        city={city}
+                        zip={zip}
+                        address={address}
+                        companyFiledSchema={companyFiledSchema}
+                        handelChange={handelChange}
+                    />
+                </div>
             </div>
         </section>
     );
