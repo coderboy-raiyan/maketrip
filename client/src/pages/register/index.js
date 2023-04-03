@@ -1,8 +1,7 @@
-import Image from "next/image";
 import { useState } from "react";
 import * as Yup from "yup";
 
-import images from "../../assets/images";
+import LoginRegistrationLayout from "@/components/Layouts/LoginRegistrationLayout";
 import CompanyInfo from "./CompanyInfo";
 
 const companyInputFields = {
@@ -56,37 +55,29 @@ function Register() {
     console.log(companyFields);
 
     return (
-        <section
-            style={{ background: "linear-gradient(180deg, #A7D1DF 0%, #DDF2F9 100%" }}
-            className="py-20"
-        >
-            <div className="display-size grid grid-cols-2">
-                <div className="">
-                    <Image className="mr-auto block w-[500px] rounded-lg" src={images.authBg1} />
-                </div>
-                {/* Form */}
-                <div className="rounded-lg bg-white p-10 shadow-lg">
-                    <h3 className="mb-2 text-center text-2xl font-semibold text-[var(--black)]">
-                        Signup & get started!
-                    </h3>
-                    <p className="mb-4 text-center text-sm text-[var(--gray)]">
-                        Start your my Partner journey in just 3 simple steps.
-                    </p>
+        <LoginRegistrationLayout>
+            {/* Form */}
+            <div className="h-full rounded-lg bg-white p-10 shadow-lg">
+                <h3 className="mb-2 text-center text-2xl font-semibold text-[var(--black)]">
+                    Signup & get started!
+                </h3>
+                <p className="mb-4 text-center text-sm text-[var(--gray)]">
+                    Start your my Partner journey in just 3 simple steps.
+                </p>
 
-                    <CompanyInfo
-                        companyName={companyName}
-                        email={email}
-                        phone={phone}
-                        country={country}
-                        city={city}
-                        zip={zip}
-                        address={address}
-                        companyFiledSchema={companyFiledSchema}
-                        handelChange={handelChange}
-                    />
-                </div>
+                <CompanyInfo
+                    companyName={companyName}
+                    email={email}
+                    phone={phone}
+                    country={country}
+                    city={city}
+                    zip={zip}
+                    address={address}
+                    companyFiledSchema={companyFiledSchema}
+                    handelChange={handelChange}
+                />
             </div>
-        </section>
+        </LoginRegistrationLayout>
     );
 }
 
