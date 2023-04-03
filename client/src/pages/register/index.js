@@ -57,7 +57,7 @@ function Register() {
     return (
         <LoginRegistrationLayout>
             {/* Form */}
-            <div className="h-full rounded-lg bg-white p-10 shadow-lg">
+            <div className="min-h-full rounded-lg bg-white p-10 shadow-lg">
                 <h3 className="mb-2 text-center text-2xl font-semibold text-[var(--black)]">
                     Signup & get started!
                 </h3>
