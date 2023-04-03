@@ -45,7 +45,7 @@ export default function LoginRegistrationLayout({ children }) {
             {/* navbar section end  */}
             {/* form and carousel section start  */}
             <section className="primary-container my-14">
-                <div className="grid grid-cols-2 gap-x-20">
+                <div className="gap grid gap-x-20 gap-y-20 lg:grid-cols-2">
                     <div>
                         <Carousel />
                     </div>
