@@ -1,11 +1,12 @@
-import Image from "next/image";
+/* eslint-disable react/jsx-boolean-value */
 import { useState } from "react";
 
-import images from "../../assets/images";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
 import CompanyInfo from "./CompanyInfo";
 import ContactInfo from "./ContactInfo";
-import { companyFiledSchema, contactFiledSchema } from "./validationSchemas";
+import LoginInfo from "./LoginInfo";
+import Slider from "./Slider";
+import { LoginFieldSchema, companyFiledSchema, contactFiledSchema } from "./validationSchemas";
 
 const initialCompanyInputFields = {
     companyName: "",
@@ -64,8 +65,7 @@ function Register() {
         }));
     }
 
-    console.log({ companyFields });
-    console.log({ contactFields });
+    console.log(loginFields);
 
     return (
         <section
@@ -73,13 +73,8 @@ function Register() {
             className="py-20"
         >
             <div className="display-size grid grid-cols-2">
-                <div className="">
-                    <Image
-                        className="mr-auto block w-[500px] rounded-lg"
-                        alt="auth-hero"
-                        src={images.authBg1}
-                    />
-                </div>
+                {/* Slider */}
+                <Slider />
                 {/* Form */}
                 <div className="rounded-lg bg-white p-10 shadow-lg">
                     <h3 className="mb-2 text-center text-2xl font-semibold text-[var(--black)]">
@@ -107,6 +102,15 @@ function Register() {
                         full_name={full_name}
                         contactFiledSchema={contactFiledSchema}
                         handelChange={handelContactFiledChange}
+                    />
+
+                    <LoginInfo
+                        email={email}
+                        username={username}
+                        password={password}
+                        confirmPassword={confirmPassword}
+                        loginFieldSchema={LoginFieldSchema}
+                        handelChange={handelLoginFiledChange}
                     />
                 </div>
             </div>

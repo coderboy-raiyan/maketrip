@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { Form, Formik } from "formik";
 import Button from "../../components/Buttons/Button";
 import FormInput from "../../components/Inputs/FormInput";

@@ -10,13 +10,13 @@ export const companyFiledSchema = Yup.object({
     address: Yup.string().required("Filed is required"),
 });
 export const contactFiledSchema = Yup.object({
-    full_name: Yup.string().required("Please enter a company name"),
+    full_name: Yup.string().required("Please enter a full name"),
     contactEmail: Yup.string().email("Invalid email").required("Email is required"),
-    contactPhone: Yup.string().required("Filed is required"),
+    contactPhone: Yup.string().required("Enter your phone number"),
 });
-export const LoginFiledSchema = Yup.object({
-    username: Yup.string().required("Please enter a company name"),
+export const LoginFieldSchema = Yup.object({
+    username: Yup.string().required("Please enter a username"),
     email: Yup.string().email("Invalid email").required("Email is required"),
-    password: Yup.string().required("Filed is required"),
-    confirmPassword: Yup.string().required("Filed is required"),
+    password: Yup.string().required("Enter a unique password"),
+    confirmPassword: Yup.string().required("Enter confirm password"),
 });
