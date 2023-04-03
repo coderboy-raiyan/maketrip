@@ -1,5 +1,7 @@
+import LoginRegistrationLayout from "@/components/Layouts/LoginRegistrationLayout";
+
 function Login() {
-  return <div>index</div>;
+    return <LoginRegistrationLayout />;
 }
 
 export default Login;
