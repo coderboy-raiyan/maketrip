@@ -1,59 +1,71 @@
 import Image from "next/image";
 import { useState } from "react";
-import * as Yup from "yup";
 
 import images from "../../assets/images";
+import useMultiStepForm from "../../hooks/useMultiStepForm";
 import CompanyInfo from "./CompanyInfo";
+import ContactInfo from "./ContactInfo";
+import { companyFiledSchema, contactFiledSchema } from "./validationSchemas";
 
-const companyInputFields = {
+const initialCompanyInputFields = {
     companyName: "",
-    email: "",
+    companyEmail: "",
     phone: "",
     country: "",
     city: "",
     zip: "",
     address: "",
 };
-const contactInputFields = {
-    name: "",
-    email: "",
-    phone: "",
+const initialContactInputFields = {
+    full_name: "",
+    contactEmail: "",
+    contactPhone: "",
 };
-const loginInputFields = {
+const initialLoginInputFields = {
     username: "",
     email: "",
     password: "",
     confirmPassword: "",
 };
 
-const companyFiledSchema = Yup.object({
-    companyName: Yup.string().required("Please enter a company name"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
-    phone: Yup.string().required("Filed is required"),
-    country: Yup.string().required("Filed is required"),
-    city: Yup.string().required("Filed is required"),
-    zip: Yup.string().required("Filed is required"),
-    address: Yup.string().required("Filed is required"),
-});
-
 function Register() {
-    const [companyFields, setCompanyFields] = useState(companyInputFields);
-    const [contactFields, setContactFields] = useState(contactInputFields);
-    const [loginFields, setLoginFields] = useState(loginInputFields);
-    const { companyName, email, phone, country, city, zip, address } = companyFields;
+    const [companyFields, setCompanyFields] = useState(initialCompanyInputFields);
+    const [contactFields, setContactFields] = useState(initialContactInputFields);
+    const [loginFields, setLoginFields] = useState(initialLoginInputFields);
+    const { companyName, companyEmail, phone, country, city, zip, address } = companyFields;
+    const { contactEmail, contactPhone, full_name } = contactFields;
+    const { username, email, password, confirmPassword } = loginFields;
 
-    const [page, setPage] = useState(1);
-    const formTitles = ["company", "contact", "login"];
+    const { steps, next, back, currentStepIndex } = useMultiStepForm([
+        "company",
+        "contact",
+        "login",
+    ]);
 
-    function handelChange(e) {
+    function handelCompanyFiledChange(e) {
         const { name, value } = e.target;
         setCompanyFields((prev) => ({
             ...prev,
             [name]: value,
         }));
     }
+    function handelContactFiledChange(e) {
+        const { name, value } = e.target;
+        setContactFields((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    }
+    function handelLoginFiledChange(e) {
+        const { name, value } = e.target;
+        setLoginFields((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    }
 
-    console.log(companyFields);
+    console.log({ companyFields });
+    console.log({ contactFields });
 
     return (
         <section
@@ -62,7 +74,11 @@ function Register() {
         >
             <div className="display-size grid grid-cols-2">
                 <div className="">
-                    <Image className="mr-auto block w-[500px] rounded-lg" src={images.authBg1} />
+                    <Image
+                        className="mr-auto block w-[500px] rounded-lg"
+                        alt="auth-hero"
+                        src={images.authBg1}
+                    />
                 </div>
                 {/* Form */}
                 <div className="rounded-lg bg-white p-10 shadow-lg">
@@ -75,14 +91,22 @@ function Register() {
 
                     <CompanyInfo
                         companyName={companyName}
-                        email={email}
+                        companyEmail={companyEmail}
                         phone={phone}
                         country={country}
                         city={city}
                         zip={zip}
                         address={address}
                         companyFiledSchema={companyFiledSchema}
-                        handelChange={handelChange}
+                        handelChange={handelCompanyFiledChange}
+                    />
+
+                    <ContactInfo
+                        contactEmail={contactEmail}
+                        contactPhone={contactPhone}
+                        full_name={full_name}
+                        contactFiledSchema={contactFiledSchema}
+                        handelChange={handelContactFiledChange}
                     />
                 </div>
             </div>

@@ -4,7 +4,7 @@ import FormInput from "../../components/Inputs/FormInput";
 
 function CompanyInfo({
     companyName,
-    email,
+    companyEmail,
     phone,
     country,
     city,
@@ -17,7 +17,7 @@ function CompanyInfo({
         <Formik
             initialValues={{
                 companyName,
-                email,
+                companyEmail,
                 phone,
                 country,
                 city,
@@ -58,19 +58,19 @@ function CompanyInfo({
                             id="email"
                             onBlur={handleBlur}
                             onChange={handelChange}
-                            type="text"
+                            type="email"
                             placeholder="Email"
-                            name="email"
-                            value={values.email}
+                            name="companyEmail"
+                            value={values.companyEmail}
                             styles={
-                                errors.email &&
-                                touched.email &&
+                                errors.companyEmail &&
+                                touched.companyEmail &&
                                 "border-red-500 focus:border-red-500 border-2"
                             }
                         />
-                        {errors.email && touched.email && (
+                        {errors.companyEmail && touched.companyEmail && (
                             <span className="absolute -bottom-4 text-xs text-red-500">
-                                {errors.email}
+                                {errors.companyEmail}
                             </span>
                         )}
                     </label>
