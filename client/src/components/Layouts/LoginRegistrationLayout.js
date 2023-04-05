@@ -11,18 +11,18 @@ export default function LoginRegistrationLayout({ children }) {
     const router = useRouter();
 
     useEffect(() => {
-        if (router.pathname === "/login") {
+        if (router.pathname === "/auth/login") {
             setBtnInUse("Register");
-        } else if (router.pathname === "/register") {
+        } else if (router.pathname === "/auth/register") {
             setBtnInUse("Login");
         }
     });
 
     function handleRountClick() {
         if (btnInUse === "Login") {
-            router.push("/login");
+            router.push("/auth/login");
         } else if (btnInUse === "Register") {
-            router.push("/register");
+            router.push("/auth/register");
         }
     }
 
