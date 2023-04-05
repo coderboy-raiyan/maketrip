@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-boolean-value */
 import { useState } from "react";
 
 import useMultiStepForm from "../../hooks/useMultiStepForm";
