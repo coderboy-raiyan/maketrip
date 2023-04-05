@@ -1,10 +1,10 @@
-import images from "@/assets/images";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import images from "../../assets/images";
+import Slider from "../../pages/auth/Slider";
 import styles from "../../styles/LoginRegistraion.module.css";
 import Button from "../Buttons/Button";
-import Carousel from "../Carousel/Carousel";
 
 export default function LoginRegistrationLayout({ children }) {
     const [btnInUse, setBtnInUse] = useState("Login");
@@ -47,7 +47,7 @@ export default function LoginRegistrationLayout({ children }) {
             <section className="primary-container my-14">
                 <div className="gap grid gap-x-20 gap-y-20 lg:grid-cols-2">
                     <div>
-                        <Carousel />
+                        <Slider />
                     </div>
                     <div>{children}</div>
                 </div>
