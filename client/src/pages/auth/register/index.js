@@ -64,12 +64,21 @@ function Register() {
         }));
     }
 
-    console.log(loginFields);
+    // Submit form
+    async function handleRegisterForm() {
+        try {
+            console.log(companyFields);
+            console.log(contactFields);
+            console.log(loginFields);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <LoginRegistrationLayout>
             {/* Form */}
-            <div className="min-h-full rounded-lg bg-white p-10 shadow-lg">
+            <div className="rounded-lg bg-white p-10 shadow-lg">
                 <h3 className="mb-2 text-center text-2xl font-semibold text-[var(--black)]">
                     Signup & get started!
                 </h3>
@@ -77,34 +86,52 @@ function Register() {
                     Start your my Partner journey in just 3 simple steps.
                 </p>
 
-                <CompanyInfo
-                    companyName={companyName}
-                    email={companyEmail}
-                    phone={phone}
-                    country={country}
-                    city={city}
-                    zip={zip}
-                    address={address}
-                    companyFiledSchema={companyFiledSchema}
-                    handelChange={handelCompanyFiledChange}
-                />
+                {steps[currentStepIndex] === "company" && (
+                    <CompanyInfo
+                        companyName={companyName}
+                        companyEmail={companyEmail}
+                        phone={phone}
+                        country={country}
+                        city={city}
+                        zip={zip}
+                        address={address}
+                        companyFiledSchema={companyFiledSchema}
+                        handelChange={handelCompanyFiledChange}
+                        next={next}
+                        back={back}
+                        steps={steps}
+                        currentStepIndex={currentStepIndex}
+                    />
+                )}
 
-                <ContactInfo
-                    contactEmail={contactEmail}
-                    contactPhone={contactPhone}
-                    full_name={full_name}
-                    contactFiledSchema={contactFiledSchema}
-                    handelChange={handelContactFiledChange}
-                />
+                {steps[currentStepIndex] === "contact" && (
+                    <ContactInfo
+                        contactEmail={contactEmail}
+                        contactPhone={contactPhone}
+                        full_name={full_name}
+                        contactFiledSchema={contactFiledSchema}
+                        handelChange={handelContactFiledChange}
+                        next={next}
+                        back={back}
+                        steps={steps}
+                        currentStepIndex={currentStepIndex}
+                    />
+                )}
 
-                <LoginInfo
-                    email={email}
-                    username={username}
-                    password={password}
-                    confirmPassword={confirmPassword}
-                    loginFieldSchema={LoginFieldSchema}
-                    handelChange={handelLoginFiledChange}
-                />
+                {steps[currentStepIndex] === "login" && (
+                    <LoginInfo
+                        email={email}
+                        username={username}
+                        password={password}
+                        confirmPassword={confirmPassword}
+                        loginFieldSchema={LoginFieldSchema}
+                        handelChange={handelLoginFiledChange}
+                        back={back}
+                        steps={steps}
+                        currentStepIndex={currentStepIndex}
+                        handleRegisterForm={handleRegisterForm}
+                    />
+                )}
             </div>
         </LoginRegistrationLayout>
     );

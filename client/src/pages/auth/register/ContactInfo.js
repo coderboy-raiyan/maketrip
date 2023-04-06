@@ -2,7 +2,17 @@ import Button from "@/components/Buttons/Button";
 import FormInput from "@/components/Inputs/FormInput";
 import { Form, Formik } from "formik";
 
-function ContactInfo({ full_name, contactEmail, contactPhone, contactFiledSchema, handelChange }) {
+function ContactInfo({
+    full_name,
+    contactEmail,
+    contactPhone,
+    contactFiledSchema,
+    handelChange,
+    steps,
+    currentStepIndex,
+    back,
+    next,
+}) {
     return (
         <Formik
             initialValues={{
@@ -13,11 +23,13 @@ function ContactInfo({ full_name, contactEmail, contactPhone, contactFiledSchema
             validationSchema={contactFiledSchema}
             enableReinitialize
             onSubmit={(values) => {
-                console.log(values);
+                if (values) {
+                    next();
+                }
             }}
         >
             {({ errors, touched, values, handleBlur }) => (
-                <Form className="grid grid-cols-2 gap-x-4 gap-y-5">
+                <Form className="flex flex-col space-y-5">
                     <label htmlFor="full_name" className="relative flex flex-col">
                         <FormInput
                             value={values.full_name}
@@ -81,13 +93,19 @@ function ContactInfo({ full_name, contactEmail, contactPhone, contactFiledSchema
                             </span>
                         )}
                     </label>
-
-                    <Button
-                        type="submit"
-                        className="col-span-2 mt-6 rounded py-3 text-sm uppercase text-white"
-                    >
-                        Continue
-                    </Button>
+                    <div className="col-span-2 flex flex-col space-y-4">
+                        <Button
+                            type="submit"
+                            className="col-span-2 mt-6 rounded py-3 text-sm uppercase text-white"
+                        >
+                            Continue
+                        </Button>
+                        {currentStepIndex > 0 && currentStepIndex < steps.length - 1 && (
+                            <Button onClick={() => back()} type="button">
+                                Previous
+                            </Button>
+                        )}
+                    </div>
                 </Form>
             )}
         </Formik>
