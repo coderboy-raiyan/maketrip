@@ -4,34 +4,35 @@ import images from "../../assets/images";
 
 function Slider() {
     return (
-        <div className="mr-auto block h-full w-[500px] rounded-lg">
+        <div className="min-h-full w-full rounded-xl">
             <Carousel
                 autoPlay
                 autoFocus
                 infiniteLoop
-                interval={4000}
+                interval={6000}
                 showArrows={false}
                 showStatus={false}
                 showThumbs={false}
                 showIndicators={false}
+                transitionTime={4000}
             >
                 <div>
                     <Image
-                        className="rounded-lg object-contain"
+                        className="rounded-xl object-contain"
                         alt="auth-hero"
                         src={images.authBg1}
                     />
                 </div>
                 <div>
                     <Image
-                        className="rounded-lg object-contain"
+                        className="rounded-xl object-contain"
                         alt="auth-hero"
                         src={images.authBg2}
                     />
                 </div>
                 <div>
                     <Image
-                        className="rounded-lg object-contain"
+                        className="rounded-xl object-contain"
                         alt="auth-hero"
                         src={images.authBg3}
                     />

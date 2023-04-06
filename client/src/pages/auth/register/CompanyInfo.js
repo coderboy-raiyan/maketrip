@@ -12,6 +12,10 @@ function CompanyInfo({
     address,
     companyFiledSchema,
     handelChange,
+    next,
+    steps,
+    currentStepIndex,
+    back,
 }) {
     return (
         <Formik
@@ -27,7 +31,9 @@ function CompanyInfo({
             validationSchema={companyFiledSchema}
             enableReinitialize
             onSubmit={(values) => {
-                console.log(values);
+                if (values) {
+                    next();
+                }
             }}
         >
             {({ errors, touched, values, handleBlur }) => (
@@ -179,6 +185,11 @@ function CompanyInfo({
                             </span>
                         )}
                     </label>
+                    {currentStepIndex > 0 && currentStepIndex < steps.length - 1 && (
+                        <Button onClick={() => back()} type="button">
+                            Previous
+                        </Button>
+                    )}
                     <Button
                         type="submit"
                         className="col-span-2 mt-6 rounded py-3 text-sm uppercase text-white"
